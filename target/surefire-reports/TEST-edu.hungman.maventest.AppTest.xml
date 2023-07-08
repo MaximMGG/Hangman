@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.hungman.maventest.AppTest" time="0.051" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.hungman.maventest.AppTest" time="0.057" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="19"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
-    <property name="java.class.path" value="c:\Users\123\Desktop\JAVA projects\hangmanmaven\hangmantest\target\test-classes;c:\Users\123\Desktop\JAVA projects\hangmanmaven\hangmantest\target\classes;C:\Users\123\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\123\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\123\.m2\repository\org\jsoup\jsoup\1.16.1\jsoup-1.16.1.jar;"/>
+    <property name="java.class.path" value="C:\Users\123\Desktop\JAVA projects\hangman\target\test-classes;C:\Users\123\Desktop\JAVA projects\hangman\target\classes;C:\Users\123\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\123\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\123\.m2\repository\org\jsoup\jsoup\1.16.1\jsoup-1.16.1.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-19\bin"/>
-    <property name="sun.java.command" value="C:\Users\123\AppData\Local\Temp\surefire17105237963446534018\surefirebooter5505216817894821925.jar C:\Users\123\AppData\Local\Temp\surefire17105237963446534018 2023-07-08T15-01-37_261-jvmRun1 surefire2486969431118106175tmp surefire_05322454223379694725tmp"/>
+    <property name="sun.java.command" value="C:\Users\123\AppData\Local\Temp\surefire4463412528076057426\surefirebooter11619479137797663132.jar C:\Users\123\AppData\Local\Temp\surefire4463412528076057426 2023-07-08T16-25-15_558-jvmRun1 surefire16275022868022464914tmp surefire_013440898286223516228tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="c:\Users\123\Desktop\JAVA projects\hangmanmaven\hangmantest\target\test-classes;c:\Users\123\Desktop\JAVA projects\hangmanmaven\hangmantest\target\classes;C:\Users\123\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\123\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\123\.m2\repository\org\jsoup\jsoup\1.16.1\jsoup-1.16.1.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\123\Desktop\JAVA projects\hangman\target\test-classes;C:\Users\123\Desktop\JAVA projects\hangman\target\classes;C:\Users\123\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\123\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\123\.m2\repository\org\jsoup\jsoup\1.16.1\jsoup-1.16.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\123"/>
     <property name="user.language" value="ru"/>
@@ -25,12 +25,12 @@
     <property name="java.version.date" value="2023-01-17"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-19"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="c:\Users\123\Desktop\JAVA projects\hangmanmaven\hangmantest"/>
+    <property name="basedir" value="C:\Users\123\Desktop\JAVA projects\hangman"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\123\AppData\Local\Temp\surefire17105237963446534018\surefirebooter5505216817894821925.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\123\AppData\Local\Temp\surefire4463412528076057426\surefirebooter11619479137797663132.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="19.0.2+7-44"/>
@@ -45,7 +45,7 @@
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\123\AppData\Local\Temp\"/>
     <property name="java.version" value="19.0.2"/>
-    <property name="user.dir" value="c:\Users\123\Desktop\JAVA projects\hangmanmaven\hangmantest"/>
+    <property name="user.dir" value="C:\Users\123\Desktop\JAVA projects\hangman"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>

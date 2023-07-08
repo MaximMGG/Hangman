@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PlayGame {
     
@@ -46,7 +48,7 @@ public class PlayGame {
                 case "1" -> {count--; return new GetWord(WordsLevel.EASY).getGuessedWord();}
                 case "2" -> {count--; return new GetWord(WordsLevel.MEDEUM).getGuessedWord();}
                 case "3" -> {count--; return new GetWord(WordsLevel.HARD).getGuessedWord();}
-                default -> awesomePrinting("This level do not exist, try agane");
+                default -> awesomePrinting("This level do not exist, try agane\n");
             }
         }
         return "ups";
@@ -78,6 +80,8 @@ public class PlayGame {
         String answer = scan.nextLine();
         while (!answer.equalsIgnoreCase("yes")) {
             if (answer.equalsIgnoreCase("no")) {
+                awesomePrinting("Thank you for playing HANGMAN, BYE");
+                waiting();
                 return;
             }
             awesomePrinting("Please, write your answer[yes/no]");
@@ -113,6 +117,7 @@ public class PlayGame {
     }
 
     private void showCorrentGuessedWord(String letter) throws InterruptedException {
+        letter = checkLetter(letter);
         boolean anyGues = false;
         if (!currentLetters.contains(letter)) {
             for (int i = 0; i < guessedWordFull.length; i++) {
@@ -124,7 +129,9 @@ public class PlayGame {
             }
         } else {
             awesomePrinting(" This letter is exist in guessed word, try agane!");
+            anyGues = true;
             System.out.println();
+            return;
         }
         if (!anyGues) {
             mistakesCounter++;
@@ -136,6 +143,26 @@ public class PlayGame {
                     System.out.println();
             }
         }
+    }
+
+    private String checkLetter(String letter) throws InterruptedException {
+        if (letter.isBlank()) {
+            awesomePrinting("You did't wrote a letter, please try agane\n");
+            letter = scan.nextLine();
+            letter = checkLetter(letter);
+        }
+        if (letter.length() > 1) {
+            awesomePrinting("You wrote incorrect letter, length gretter then one, please, write agane\n");
+            letter = scan.nextLine();
+            letter = checkLetter(letter);
+        }
+        Matcher match = Pattern.compile("[A-z]").matcher(letter);
+        if (!match.find()) {
+            awesomePrinting("You wrote symbol or number, please write letter\n");
+            letter = scan.nextLine();
+            letter = checkLetter(letter);
+        }
+        return letter;
     }
 
     private void printMistakes() throws InterruptedException {
@@ -160,7 +187,7 @@ public class PlayGame {
         awesomePrinting("Prepearing ");
         for (int i = 0; i < 5; i++) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -170,14 +197,14 @@ public class PlayGame {
     }
     private void waiting() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
     private void awesomePrinting(String str) throws InterruptedException {
         for(String a : str.split("")) {
-            Thread.sleep(50);
+            Thread.sleep(30);
             System.out.print(a);
         }
     }

@@ -9,15 +9,16 @@ import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
 public class GetWord {
 
     private String guessedWord;
-    private final String hardWords = "https://ahaslides.com/blog/random-english-words/";
-    private final String easyWords = "https://123bien.com/vocabulary/";
-    private final String medeumWords = "";
+    private final String url = "https://www.ef.com/wwen/english-resources/english-vocabulary/top-3000-words/";
     private WordsLevel level;
+    private List<String> words;
 
 
     public GetWord(WordsLevel level) {
@@ -34,11 +35,11 @@ public class GetWord {
     
         try {
             if (level == WordsLevel.EASY) {
-                return getRandomWord(wordsPreparate(getEasyElements()));
+                return getRandomWord(wordsPreparation(getElements(url), 0, 4));
             } else if (level == WordsLevel.MEDEUM) {
-                return getRandomWord(wordsPreparate(getMedeumElements()));
+                return getRandomWord(wordsPreparation(getElements(url), 4, 7));
             } else {
-                return getRandomWord(wordsPreparate(getHardElements()));
+                return getRandomWord(wordsPreparation(getElements(url), 7, 15));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,22 +50,11 @@ public class GetWord {
 
 
 
-    private Elements getHardElements() throws IOException {
-        return Jsoup.connect("https://ahaslides.com/blog/random-english-words/").get()
-                                .select("div[class=container-xs]")
-                                .select("p")
-                                .select("strong");
-    }
-
-    private Elements getMedeumElements() throws IOException {
-        return null;
-    }
-
-    private Elements getEasyElements() throws IOException {
-            return Jsoup.connect("https://123bien.com/vocabulary/").get()
-                        .select("tbody")
-                        .select("tr")
-                        .select("td");
+    private Elements getElements(String url) throws IOException {
+        return Jsoup.connect(url).get()
+                                .select("div[class=field-item even]")
+                                .select("p");
+                               
     }
 
     /**
@@ -73,20 +63,27 @@ public class GetWord {
      * @return
      */
 
-    private List<String> wordsPreparate(Elements elements) {
-        List<String> words = new ArrayList<>();
+    private List<String> wordsPreparation(Elements elements, int min, int max) {
+        words = new ArrayList<>();
         for (Element element : elements) {
-            String word = element.text();
-            Matcher matcher = Pattern.compile("^[a-z]+").matcher(word);
-            if (matcher.find()) {
-                String a = matcher.group();
-                if (a.length() < 10) {
-                    words.add(a);
+            for(Node child : element.childNodes()) {
+                String word = "";
+                if (child instanceof TextNode) {
+                    word = ((TextNode) child).text();
                 }
+                Matcher matcher = Pattern.compile("^[a-z]+").matcher(word);
+                if (matcher.find()) {
+                    String a = matcher.group();
+                    if (a.length() >= min && a.length() < max) {
+                    words.add(a);
+                    }
+                 }
             }
         }
         return words;
     }
+
+
     private String getRandomWord(List<String> words) {
         Random random = new Random();
         return words.get(random.nextInt(words.size()));
