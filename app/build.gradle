@@ -6,10 +6,17 @@
  * User Manual available at https://docs.gradle.org/8.0.2/userguide/building_java_projects.html
  */
 
+
+
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java'
 }
+
+sourceCompatibility = 19;
+targetCompatibility = 19;
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -21,10 +28,18 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.jsoup:jsoup:1.16.1'
 }
+jar {
+    manifest {
+        attributes (
+            'Main-Class': 'edu.hangman.App'
+        )
+    }
+}
+
 
 application {
     // Define the main class for the application.
-    mainClass = 'hangman.App'
+    mainClass = 'edu.hangman.App'
 }
 
 tasks.named('test') {

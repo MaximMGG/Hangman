@@ -21,8 +21,9 @@ public class PlayGame {
 
     private void firstStart() throws InterruptedException {
         System.out.println("Greetings in HANGMAN!");
-        awesomePrinting("Do you want to start a new game? \n[yes/no]\n");     
-        String answer = scan.nextLine(); 
+        awesomePrinting("Do you want to start a new game? \n[yes/no]\n");
+        scan = new Scanner(System.in);
+        String answer = scan.nextLine();
         while (!answer.equalsIgnoreCase("yes")) {
             if (answer.equalsIgnoreCase("no")) {
                 return;
@@ -30,27 +31,25 @@ public class PlayGame {
             awesomePrinting("Please, write your answer[yes/no]");
             answer = scan.nextLine();
         }
+        prepareForANewGame();
+        startPlaying();
+    }
+    private String getGuessedWord() throws InterruptedException {
         awesomePrinting("How you fill about your level in guessing words?\n");
-        awesomePrinting("I am new in this game: 1");
-        awesomePrinting("I am good in this game: 2");
-        awesomePrinting("I am profesional in this game: 3");
-        answer = scan.nextLine();
+        awesomePrinting("I am new in this game: 1\n");
+        awesomePrinting("I am good in this game: 2\n");
+        awesomePrinting("I am profesional in this game: 3\n");
         int count = 1;
         while (count != 0) {
+        String answer = scan.nextLine();
             switch(answer) {
-                case "1" -> {count--; guesedWord = new GetWord(WordsLevel.EASY).getGuessedWord();}
-                case "2" -> {count--; guesedWord = new GetWord(WordsLevel.MEDEUM).getGuessedWord();}
-                case "3" -> {count--; guesedWord = new GetWord(WordsLevel.HARD).getGuessedWord();}
+                case "1" -> {count--; return new GetWord(WordsLevel.EASY).getGuessedWord();}
+                case "2" -> {count--; return new GetWord(WordsLevel.MEDEUM).getGuessedWord();}
+                case "3" -> {count--; return new GetWord(WordsLevel.HARD).getGuessedWord();}
                 default -> awesomePrinting("This level do not exist, try agane");
             }
         }
-        guessedWordFull = guesedWord.split("");
-        guessedWordEmpty = new String[guessedWordFull.length];
-        Arrays.fill(guessedWordEmpty, "*");
-        scan = new Scanner(System.in);
-        currentLetters = new ArrayList<>();
-        waiting();
-        startPlaying();
+        return "ups";
     }
 
 
@@ -73,9 +72,9 @@ public class PlayGame {
             finalWord = FINALMESSAGEWIN;
         }
         awesomePrinting(finalWord);
-        awesomePrinting(" <> Guessed word was --> " + printGuessedWord() + " <> \n");
+        awesomePrinting(" <> Guessed word was --> " + printLoseGuessedWord() + " <> \n");
         waiting();
-        awesomePrinting("Do you want play agane?\n");
+        awesomePrinting("Do you want play agane? [yes/no]\n");
         String answer = scan.nextLine();
         while (!answer.equalsIgnoreCase("yes")) {
             if (answer.equalsIgnoreCase("no")) {
@@ -84,12 +83,30 @@ public class PlayGame {
             awesomePrinting("Please, write your answer[yes/no]");
             answer = scan.nextLine();
         }
+        prepareForANewGame();
         startPlaying();
+    }
+
+    private void prepareForANewGame() throws InterruptedException {
+        guesedWord = getGuessedWord();
+        guessedWordFull = guesedWord.split("");
+        guessedWordEmpty = new String[guessedWordFull.length];
+        Arrays.fill(guessedWordEmpty, "*");
+        currentLetters = new ArrayList<>();
+        mistakesCounter = 0;
     }
 
     private String printGuessedWord() {
         StringBuilder build = new StringBuilder();
         for(String s : guessedWordEmpty) {
+            build.append(s + " ");
+        }
+        return build.toString();
+    }
+
+    private String printLoseGuessedWord() {
+        StringBuilder build = new StringBuilder();
+        for(String s : guesedWord.split("")) {
             build.append(s + " ");
         }
         return build.toString();
@@ -113,9 +130,7 @@ public class PlayGame {
             mistakesCounter++;
             awesomePrinting("Unfortunately not, try agane\n");
         } else {
-            waiting();
             if (currentLetters.size() == guesedWord.length()) {
-
             } else {
                     awesomePrinting("Good job, let's continious");
                     System.out.println();
@@ -136,7 +151,7 @@ public class PlayGame {
     }
 
     private final String FINALMESSAGEWIN = "Congrats, you are did awesome job!";
-    private final String FINALMESSAGELOSE = "Sory, but you are lose(";
+    private final String FINALMESSAGELOSE = "Sory, but you are lose!";
 
 
     private void preparingTheWord() throws InterruptedException {
@@ -151,7 +166,6 @@ public class PlayGame {
             }
             System.out.print(" .");
         }
-        waiting();
         System.out.println();
     }
     private void waiting() {

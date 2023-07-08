@@ -45,15 +45,8 @@ public class GetWord {
         }
     }
 
-    private Elements getMedeumElements() throws IOException {
-        return null;
-    }
 
-    /**
-     * Takes elements from site
-     * @return
-     * @throws IOException
-     */
+
 
     private Elements getHardElements() throws IOException {
         return Jsoup.connect("https://ahaslides.com/blog/random-english-words/").get()
@@ -61,8 +54,16 @@ public class GetWord {
                                 .select("p")
                                 .select("strong");
     }
+
+    private Elements getMedeumElements() throws IOException {
+        return null;
+    }
+
     private Elements getEasyElements() throws IOException {
-            return null;
+            return Jsoup.connect("https://123bien.com/vocabulary/").get()
+                        .select("tbody")
+                        .select("tr")
+                        .select("td");
     }
 
     /**
@@ -83,7 +84,6 @@ public class GetWord {
                 }
             }
         }
-        System.out.println(words);
         return words;
     }
     private String getRandomWord(List<String> words) {

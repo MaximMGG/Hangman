@@ -9,7 +9,7 @@ public class App {
         // GetWord getWord = new GetWord();
         // PlayGame playGame = new PlayGame(getWord.getGuessedWord());
         try {
-            PlayGame play = new PlayGame("mellon");
+            PlayGame play = new PlayGame();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
