@@ -14,9 +14,14 @@ import org.jsoup.select.Elements;
 public class GetWord {
 
     private String guessedWord;
+    private final String hardWords = "https://ahaslides.com/blog/random-english-words/";
+    private final String easyWords = "https://123bien.com/vocabulary/";
+    private WordsLevel level;
 
 
-    public GetWord() {
+    public GetWord(WordsLevel level) {
+        this.level = level;
+
         guessedWord = initializeWord();
     }
 
@@ -25,12 +30,23 @@ public class GetWord {
     }
 
     private String initializeWord() {
+    
         try {
-            return getRandomWord(wordsPreparate(getElements()));
+            if (level == WordsLevel.EASY) {
+                return getRandomWord(wordsPreparate(getEasyElements()));
+            } else if (level == WordsLevel.MEDEUM) {
+                return getRandomWord(wordsPreparate(getMedeumElements()));
+            } else {
+                return getRandomWord(wordsPreparate(getHardElements()));
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return "Ups";
         }
+    }
+
+    private Elements getMedeumElements() throws IOException {
+        return null;
     }
 
     /**
@@ -39,11 +55,14 @@ public class GetWord {
      * @throws IOException
      */
 
-    private Elements getElements() throws IOException {
+    private Elements getHardElements() throws IOException {
         return Jsoup.connect("https://ahaslides.com/blog/random-english-words/").get()
-                                        .select("div[class=container-xs]")
-                                        .select("p")
-                                        .select("strong");
+                                .select("div[class=container-xs]")
+                                .select("p")
+                                .select("strong");
+    }
+    private Elements getEasyElements() throws IOException {
+            return null;
     }
 
     /**

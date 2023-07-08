@@ -6,8 +6,13 @@ package edu.hangman;
 public class App {
 
     public static void main(String[] args) {
-        GetWord getWord = new GetWord();
-        PlayGame playGame = new PlayGame(getWord.getGuessedWord());
+        // GetWord getWord = new GetWord();
+        // PlayGame playGame = new PlayGame(getWord.getGuessedWord());
+        try {
+            PlayGame play = new PlayGame("mellon");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 
