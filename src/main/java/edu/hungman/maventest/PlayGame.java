@@ -73,7 +73,8 @@ public class PlayGame {
         } else {
             finalWord = FINALMESSAGEWIN;
         }
-        awesomePrinting(finalWord);
+        awesomePrinting(finalWord + "\n");
+        printMistakes();
         awesomePrinting(" <> Guessed word was --> " + printLoseGuessedWord() + " <> \n");
         waiting();
         awesomePrinting("Do you want play agane? [yes/no]\n");
@@ -135,6 +136,9 @@ public class PlayGame {
         }
         if (!anyGues) {
             mistakesCounter++;
+            if (mistakesCounter == 6) {
+                return;
+            }
             awesomePrinting("Unfortunately not, try agane\n");
         } else {
             if (currentLetters.size() == guesedWord.length()) {
@@ -151,6 +155,7 @@ public class PlayGame {
             letter = scan.nextLine();
             letter = checkLetter(letter);
         }
+        letter = letter.toLowerCase();
         if (letter.length() > 1) {
             awesomePrinting("You wrote incorrect letter, length gretter then one, please, write agane\n");
             letter = scan.nextLine();
